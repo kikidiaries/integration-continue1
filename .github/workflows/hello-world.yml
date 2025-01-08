@@ -16,14 +16,10 @@ jobs:
     - name: Checkout the code
       uses: actions/checkout@v2  # Cette action permet de récupérer les fichiers du dépôt.
 
-    - name: Installer npm et les dépendances
+    - name: Installer les dépendances et vérifier le code avec npm
       run: |
-        npm install -g eslint   # Installe eslint globalement pour garantir qu'il soit trouvé
-        npm install             # Installe les dépendances définies dans package.json
-
-    - name: Vérifier le code avec npm
-      run: |
-        npm run lint            # Exécute eslint pour vérifier la qualité du code
+        npm install      # Installe les dépendances du projet (y compris eslint).
+        npx eslint .     # Exécute eslint sur tous les fichiers du projet.
 
     - name: Afficher Hello World
       run: echo "Hello World"  # Affiche "Hello World" dans les logs.
