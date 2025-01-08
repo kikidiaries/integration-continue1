@@ -3,23 +3,25 @@ name: Hello World Workflow
 on:
   push:
     branches:
-      - main  
+      - main 
   pull_request:
     branches:
       - main  
-
 jobs:
   greeting:
     runs-on: ubuntu-latest  
 
     steps:
     - name: Checkout the code
-      uses: actions/checkout@v2  #récupérer les fichiers du dépôt.
+      uses: actions/checkout@v2  
+
+    - name: Lister les fichiers du projet
+      run: ls -alh  
 
     - name: Installer les dépendances et vérifier le code avec npm
       run: |
-        npm install      # Installe les dépendances du projet (si tu en as un fichier package.json).
-        npm run lint     # Exécute le linter pour vérifier la qualité du code (si un linter est configuré).
+        npm install      # Installe les dépendances du projet.
+        npm run lint     # Exécute le linter pour vérifier la qualité du code.
 
     - name: Afficher Hello World
-      run: echo "Hello World" 
+      run: echo "Hello World"  
