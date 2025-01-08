@@ -4,11 +4,22 @@ on:
   push:
     branches:
       - main  
+  pull_request:
+    branches:
+      - main  
 
 jobs:
   greeting:
     runs-on: ubuntu-latest  
 
     steps:
+    - name: Checkout the code
+      uses: actions/checkout@v2  #récupérer les fichiers du dépôt.
+
+    - name: Installer les dépendances et vérifier le code avec npm
+      run: |
+        npm install      # Installe les dépendances du projet (si tu en as un fichier package.json).
+        npm run lint     # Exécute le linter pour vérifier la qualité du code (si un linter est configuré).
+
     - name: Afficher Hello World
-      run: echo "Hello World"  
+      run: echo "Hello World" 
